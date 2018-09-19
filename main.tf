@@ -49,11 +49,11 @@ resource "aws_key_pair" "mine" {
 }
 
 resource "aws_instance" "my_instance" {
-  ami                    = "ami-0773391ae604c49a4"                        # Ubuntu 16.04 LTS
-  instance_type          = "t2.micro"
-  vpc_security_group_ids = ["${aws_security_group.my_security_group.id}"]
-  key_name               = "${aws_key_pair.mine.id}"
-  user_data              = "${file("userdata.sh")}"
+  ami             = "ami-0773391ae604c49a4"                          # Ubuntu 16.04 LTS
+  instance_type   = "t2.micro"
+  security_groups = ["${aws_security_group.my_security_group.name}"]
+  key_name        = "${aws_key_pair.mine.id}"
+  user_data       = "${file("userdata.sh")}"
 
   tags {
     Name = "My instance"

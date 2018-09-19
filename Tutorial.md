@@ -29,6 +29,10 @@ provider "aws" {
 }
 ````
 
+Anschließend können wir Terraform initialisieren, wodurch automatisch das AWS Plugin heruntergeladen wird:
+
+    terraform init
+
 
 EC2-Instanz starten
 ===================
@@ -36,7 +40,7 @@ EC2-Instanz starten
 `main.tf`-Datei um folgendes ergänzen:
 ````
 resource "aws_instance" "my_instance" {
-  "ami-0773391ae604c49a4"    # Ubuntu 16.04 LTSLinux 2 AMI (region-specific)
+  ami = "ami-0773391ae604c49a4"    # Ubuntu 16.04 LTSLinux 2 AMI (region-specific)
   instance_type = "t2.micro"
 
   tags {
@@ -45,10 +49,10 @@ resource "aws_instance" "my_instance" {
 }
 ````
 
-````
-terraform init
-terraform apply
-````
+Und anwenden:
+
+    terraform apply
+
 
 
 Über Security Group erreichbar machen
@@ -70,7 +74,7 @@ resource "aws_security_group" "my_security_group" {
 
 resource "aws_instance" "my_instance" {
   ...
-  vpc_security_group_ids = ["${aws_security_group.my_security_group.id}"]
+  security_groups = ["${aws_security_group.my_security_group.name}"]
 }
 ````
 
