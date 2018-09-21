@@ -1,13 +1,13 @@
-Terraform grob erklären
-=======================
+# Terraform AWS Tutorial
 
-- Orchestrierung von Infrastruktur
+In diesem Tutorial wird gezeigt, wie man Terraform einsetzen kann, um Infrastruktur bei AWS (oder einem anderen Cloud-Anbieter) zu beschreiben und erzeugen. Terraform ist ein Tool zur Infrastrukturautomatisierung, das wegen folgender Eigenschaften beliebt ist:
+
 - IaC und deklarativ
 - Funktioniert für diverse Cloud-Provider
 - Idempotent: Terraform vergleicht Soll und Ist und berechnet Plan zum Angleichen
 
+
 Vorbedingungen
-==============
 
 - Terraform installieren
 - AWS CLI installieren (optional)
@@ -15,8 +15,7 @@ Vorbedingungen
 - Erstellter AWS Access Key
 
 
-Terraform mit AWS verbinden
-===========================
+## Terraform mit AWS verbinden
 
 - Access Key lokal bereitstellen (mit AWS CLI, ansonsten auch händisch in `~/.aws/credentials`):
 ````
@@ -34,8 +33,7 @@ Anschließend können wir Terraform initialisieren, wodurch automatisch das AWS 
     terraform init
 
 
-EC2-Instanz starten
-===================
+## EC2-Instanz starten
 
 `main.tf`-Datei um folgendes ergänzen:
 ````
@@ -55,8 +53,7 @@ Und anwenden:
 
 
 
-Über Security Group erreichbar machen
-=====================================
+## Über Security Group erreichbar machen
 
 `main.tf`-Datei um folgendes ergänzen:
 ````
@@ -92,8 +89,7 @@ Wenn der Befehl erfolgreich durchgeführt wurde, wird `public_dns` ausgegeben, d
     ping <public_dns>
 
 
-Web-App provisionieren
-======================
+## Web-App provisionieren
 
 Wir wollen auf der EC2-Instanz einen Nginx starten, um zu demonstrieren, wie man allgemein eine Web-App deployen würde.
 
@@ -150,8 +146,7 @@ Mit `terraform apply` setzen wir die Änderungen um:
 
     terraform apply
 
-Aufräumen
-=========
+## Aufräumen
 
 Damit keine Kosten entstehen:
 
