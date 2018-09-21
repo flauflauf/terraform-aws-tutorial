@@ -76,6 +76,10 @@ resource "aws_instance" "my_instance" {
   ...
   security_groups = ["${aws_security_group.my_security_group.name}"]
 }
+
+output "dns" {
+  value = "${aws_instance.my_instance.public_dns}"
+}
 ````
 
 Dann
@@ -83,9 +87,9 @@ Dann
     terraform apply
 
 
-Mit "terraform show" (oder Output) die Public IP oder Public DNS herausfinden und
+Wenn der Befehl erfolgreich durchgeführt wurde, wird `public_dns` ausgegeben, der öffentliche Name der Instanz. Diesen können wir pingen:
 
-    ping x
+    ping <public_dns>
 
 
 Web-App provisionieren
